@@ -2,76 +2,58 @@
 #define ull unsigned long long
 using namespace std;
 
-typedef struct costType{
-    ull oldPosition;
-    ull cost;
-    costType() {
-        oldPosition = 0;
-        cost = 0;
-    }
-    costType(ull oldPosition_, ull cost_) {
-        oldPosition = oldPosition_;
-        cost = cost_;
-    }
-}CostType;
-
-bool ascendingCompare(CostType ct1, CostType ct2) {
-    if (ct1.cost == ct2.cost) {
-        return ct1.oldPosition < ct2.oldPosition;
-    }
-    return ct1.cost < ct2.cost;
-}
-
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0); cout.tie(0);
 
-    ull testcase = 0;
-    cin >> testcase;
-    while(testcase--) {
-        ull money, arraySize, pasanganKiri = -1, pasanganKanan = -1;
-        cin >> money >> arraySize;
-        vector<CostType> costs;
+    ull arraySizeA, arraySizeB;
+    vector<ull> arrayA, arrayB;
+    cin >> arraySizeA;
 
-        for( ull i = 0; i < arraySize; i++) {
-            ull temp;
-            cin >> temp;
-            costs.emplace_back(i, temp);
-        }
-        sort( costs.begin(), costs.end(), ascendingCompare);
-        for( ull i = 0; i < arraySize; i++) {
-            ull left = i, middle, right = arraySize - 1;
-            while (left < right) {
-//                middle = (left + right) / 2;
-                middle = left + (right - left + 1) / 2;
-                if (costs[middle].cost == (money - costs[i].cost)) {
-                    while ( (costs[middle - 1].cost == (money - costs[i].cost)) &&
-                            (costs[middle - 1].oldPosition != costs[i].oldPosition)) {
-                        middle--;
-                    }
-                    pasanganKiri = min(costs[i].oldPosition, costs[middle].oldPosition);
-                    pasanganKanan = max(costs[i].oldPosition, costs[middle].oldPosition);
-                    break;
-                } else if (costs[middle].cost < (money - costs[i].cost)){
-                    left++;
-                } else {
-                    right--;
-                }
-            }
-            if (pasanganKiri != -1 && pasanganKanan != -1) {
-                break;
-            }
-        }
-        cout << pasanganKiri+1 << " " << pasanganKanan+1 << endl;
+    ull temp;
+    for( ull i = 0; i < arraySizeA; i++) {
+        cin >> temp;
+        arrayA.push_back( temp );
     }
+
+    cin >> arraySizeB;
+    for( ull i = 0; i < arraySizeB; i++) {
+        cin >> temp;
+        arrayB.push_back( temp );
+    }
+
+    sort( arrayA.begin(), arrayA.end() );
+    sort( arrayB.begin(), arrayB.end() );
+
+    ull indexA = 0;
+    vector<ull> unmatched;
+    for( ull indexB = 0; indexB < arraySizeB; indexB++) {
+        if (arrayA[indexA] == arrayB[indexB]) {
+            indexA++;
+            continue;
+        } else {
+            unmatched.push_back( arrayB[indexB] );
+        }
+    }
+
+    for( ull i = 0; i < unmatched.size(); i++) {
+        cout << unmatched[i];
+        if ( i != unmatched.size() - 1 ) {
+            cout << " ";
+        }
+    }
+    cout << endl;
 
     return 0;
 }
 /*
-1
-3
-2
-1 2
+10
+203 204 205 206 207 208 203 204 205 206
+13
+203 204 204 205 206 207 205 208 203 206 205 206 204
+
+\
 
 
+ 3670 3674 3677 3684 3685 3685 3695 3714 3720
  */
