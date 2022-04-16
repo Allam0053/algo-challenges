@@ -1,7 +1,8 @@
 # ninja log v5
-13	15124	6711816322415504	CMakeFiles/untitled.dir/main.cpp.obj	672d5ae98eeee71d
-22	1759	6711866525703653	build.ninja	d6b6e3733816d00
+18	15394	6711887693251734	CMakeFiles/untitled.dir/main.cpp.obj	672d5ae98eeee71d
+22	1759	6718247855698045	build.ninja	d6b6e3733816d00
 27	768	6707579558656991	CMakeFiles/untitled.dir/warehouse/hackerrank/Hackerland_Radio_Transmitters.cpp.obj	539637d8526c72d0
 236	1477	6710238334312595	CMakeFiles/untitled.dir/warehouse/hackerrank/Ice_Cream_Parlor.cpp.obj	39279977d54900e6
-15126	16822	6711816339275493	untitled.exe	e92f3aa653978e2a
+15396	16158	6711887700907859	untitled.exe	5076626259b9f72e
 20	220	6705247390019937	CMakeFiles/untitled.dir/warehouse/hackerrank/llilys_homework.cpp.obj	5a230f9401bf9702
+81	611	6711876185537212	CMakeFiles/untitled.dir/warehouse/hackerrank/Pairs.cpp.obj	e309d9d16e9de45c
