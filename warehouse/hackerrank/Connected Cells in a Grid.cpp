@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+/*#include <bits/stdc++.h>
 
 using namespace std;
 
@@ -19,6 +19,7 @@ int MOVEMENT[8][2] = {
         {1, 0},
         {1, 1}
 };
+ */
 /*
  * Complete the 'connectedCell' function below.
  *
@@ -31,7 +32,7 @@ int MOVEMENT[8][2] = {
  * 3. mark every visited node as isVisited = true
  * 4. last, save the maximum area
  */
-
+/*
 bool checkNode(int yIndex, int xIndex) {
     return (0 <= yIndex && yIndex < n &&
             0 <= xIndex && xIndex < m &&
@@ -45,7 +46,7 @@ void connectCurrentCell(int yIndex, int xIndex, int* gridCounted) {
      * 4 * 5
      * 6 7 8
      * */
-
+/*
     isVisited[yIndex][xIndex] = true;
     *gridCounted += 1;
     for (int i = 0; i < 8; i++) {
@@ -151,3 +152,4 @@ vector<string> split(const string &str) {
 
     return tokens;
 }
+*/

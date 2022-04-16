@@ -2,32 +2,59 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int coins[ 1000 ];
+long long sum, coinCount;
+vector<vector<long long>> dynamicprogTable;
+vector<long long> coins;
 
-int coinTypes, targetSum;
+//Function to initialize 1st column of dynamicprogTable with 1
+void initdynamicprogTable() {
+    dynamicprogTable = vector<vector<long long>>(coinCount+1, vector<long long>(sum + 1, 0));
 
-int solution(int currentSum, int currentTypeOfCoins){
-
-    if(coinTypes == 0 || currentSum > targetSum || currentTypeOfCoins>=coinTypes) {
-        return 0;
+    //First row to 0
+    for( long long i = 1; i <= sum; i++) {
+      dynamicprogTable[0][i] = 0;
     }
 
-    else if(currentSum == targetSum) {
-        return 1;
+    //First column to 1
+    for( long long i = 1; i <= coinCount; i++) {
+      dynamicprogTable[i][0] = 1;
     }
 
-    return solution(currentSum+coins[currentTypeOfCoins],currentTypeOfCoins) + solution(currentSum,currentTypeOfCoins+1) ;
+}
 
+long long solution(){
+  long long coinindex, dynamicprogSum;
+
+  for( coinindex = 1; coinindex <= coinCount; coinindex++) {
+      for( dynamicprogSum = 1; dynamicprogSum <= sum; dynamicprogSum++) {
+        //value of coin should be less than or equal to sum value to consider it
+        if(coins[coinindex-1] > dynamicprogSum)
+            dynamicprogTable[coinindex][dynamicprogSum] = dynamicprogTable[coinindex-1][dynamicprogSum];
+
+        else
+            dynamicprogTable[coinindex][dynamicprogSum] = dynamicprogTable[coinindex-1][dynamicprogSum]+dynamicprogTable[coinindex][dynamicprogSum-coins[coinindex-1]];
+      }
+  }
+
+  //return final row and column value
+  return dynamicprogTable[coinCount][sum];
 }
 
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0); cout.tie(0);
-    cin >> targetSum >> coinTypes;
-    for(int i=0; i<coinTypes; i++) {
+    cin >> sum >> coinCount;
+    coins = vector<long long>(coinCount, 0);
+    for (long long i = 0; i < coinCount; i++) {
         cin >> coins[i];
     }
-    cout << solution(0,0) << endl;
+    sort( coins.begin(), coins.end() );
+    initdynamicprogTable();
+
+    cout << solution() << endl;
+
     return 0;
 }
+
+
 */
